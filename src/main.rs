@@ -17,6 +17,25 @@ struct Args {
 
 }
 
+struct Atom();
+
+struct Literal {
+    atom : Atom,
+    neg : bool
+}
+
+struct Clause{
+    name : String,
+    literals : Vec<Literal>
+}
+
+struct ClauseSet(Vec<Clause>);
+
+struct ProofState {
+    unprocessed : Vec<ClauseSet>,
+    processed : Vec<ClauseSet>
+}
+
 fn main() {
     let args = Args::parse();
     let f = File::open(args.filename).expect("file does not exist");
