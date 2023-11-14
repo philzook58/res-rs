@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0.15", features = ["derive"] }
+symbol_table = { version = "0.3.0", features = ["global"] }
 tptp="0.31.1"

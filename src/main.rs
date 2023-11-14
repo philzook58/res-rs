@@ -1,5 +1,5 @@
-use tptp::TPTPIterator;
 use tptp::visitor::Visitor;
+use tptp::TPTPIterator;
 
 struct MyVisitor;
 impl<'a> Visitor<'a> for MyVisitor {}
@@ -13,27 +13,7 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-   filename: String,
-
-}
-
-struct Atom();
-
-struct Literal {
-    atom : Atom,
-    neg : bool
-}
-
-struct Clause{
-    name : String,
-    literals : Vec<Literal>
-}
-
-struct ClauseSet(Vec<Clause>);
-
-struct ProofState {
-    unprocessed : Vec<ClauseSet>,
-    processed : Vec<ClauseSet>
+    filename: String,
 }
 
 fn main() {
@@ -41,7 +21,9 @@ fn main() {
     let f = File::open(args.filename).expect("file does not exist");
     let mut buf_reader = BufReader::new(f);
     let mut contents = String::new();
-    buf_reader.read_to_string(&mut contents).expect("bufreader failed");
+    buf_reader
+        .read_to_string(&mut contents)
+        .expect("bufreader failed");
 
     let mut visitor = MyVisitor;
     let mut parser = TPTPIterator::<()>::new(&contents.as_bytes());
