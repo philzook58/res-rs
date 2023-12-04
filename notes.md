@@ -12,3 +12,5 @@ VF2
 dedukti and kontroli
 
 <https://github.com/mAarnos/Serkr>
+
+<https://github.com/01mf02/cop-rs> meancop
